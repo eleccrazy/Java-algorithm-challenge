@@ -62,6 +62,12 @@ public class RailroadTie {
         System.out.println(isRailroadTie(new int[] { 1 })); // returns 0
         System.out.println(isRailroadTie(new int[] {})); // returns 0
         System.out.println(isRailroadTie(new int[] { 0 })); // returns 0
+        System.out.println(isRailroadTie(new int[] { 1, 2 })); // returns 1
+        System.out.println(isRailroadTie(new int[] { 1, 2, 0, 1, 2, 0, 1, 2 })); // returns 1
+        System.out.println(isRailroadTie(new int[] { 3, 3, 0, 3, 3, 0, 3, 3, 0, 3, 3 })); // returns 1
+        System.out.println(isRailroadTie(new int[] { 0, 0, 0, 0 })); // retruns 0
+        System.out.println(isRailroadTie(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 })); // returns 0
+        System.out.println(isRailroadTie(new int[] { 1, 3, 0, 3, 5, 0 })); // returns 0
 
     }
 }
