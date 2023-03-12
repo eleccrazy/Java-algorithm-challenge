@@ -32,8 +32,8 @@ public class PrimeFactor {
     }
 
     public static void main(String[] args) {
-        System.out.println(largestPrimeFactor(10));
-        System.out.println(largestPrimeFactor(6936));
-        System.out.println(largestPrimeFactor(1));
+        System.out.println(largestPrimeFactor(10)); // 5
+        System.out.println(largestPrimeFactor(6936)); // 17
+        System.out.println(largestPrimeFactor(1)); // 0
     }
 }
