@@ -51,12 +51,12 @@ public class EncodeNumber {
             return null;
         }
 
-        int encodedArraySize = 0; // 2, 3, 17
+        int encodedArraySize = 0;
         ArrayList<Integer> reprArray = new ArrayList<Integer>();
         for (int i = tempArray.size() - 1; n > 1; i--) {
             if (n % tempArray.get(i) == 0) {
-                reprArray.add(tempArray.get(i)); // 17, 3, 2, 17, 2, 2
-                encodedArraySize++; // 3, 4, 5, 6
+                reprArray.add(tempArray.get(i));
+                encodedArraySize++;
                 n /= tempArray.get(i);
                 if (i == 0) {
                     i = tempArray.size() - 1;
