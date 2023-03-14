@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-
 /**
  * 2. The fundamental theorem of arithmetic states that every natural number
  * greater than 1 can be written as a unique product of prime
@@ -28,7 +25,7 @@ import java.util.Arrays;
 public class EncodeNumber {
     public static int[] encodeNumber(int n) {
         boolean flag;
-        ArrayList<Integer> tempArray = new ArrayList<Integer>();
+        int count = 0;
         if (n < 2) {
             return null;
         }
@@ -42,39 +39,67 @@ public class EncodeNumber {
                     }
                 }
                 if (flag) {
-                    tempArray.add(i); // 2, 3, 17
+                    count++;
                 }
             }
         }
         // Incase the number has no prime factors at all, we will return null.
-        if (tempArray.size() == 0) {
+        if (count == 0) {
             return null;
         }
 
+        int[] primeArray = new int[count];
+        int idx = 0;
+        for (int i = 2; i <= n / 2; i++) {
+            flag = true;
+            if (n % i == 0) {
+                for (int j = 2; j <= i / 2; j++) {
+                    if (i % j == 0) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    primeArray[idx++] = i;
+                }
+            }
+        }
+
         int encodedArraySize = 0;
-        ArrayList<Integer> reprArray = new ArrayList<Integer>();
-        for (int i = tempArray.size() - 1; n > 1; i--) {
-            if (n % tempArray.get(i) == 0) {
-                reprArray.add(tempArray.get(i));
+        int nTemp = n;
+        for (int i = primeArray.length - 1; nTemp > 1; i--) {
+            if (nTemp % primeArray[i] == 0) {
                 encodedArraySize++;
-                n /= tempArray.get(i);
+                nTemp /= primeArray[i];
                 if (i == 0) {
-                    i = tempArray.size() - 1;
+                    i = primeArray.length;
                 }
             } else {
                 if (i == 0) {
-                    i = tempArray.size();
+                    i = primeArray.length;
                 }
                 continue;
             }
         }
-        int[] encodedArray = new int[encodedArraySize];
 
-        for (int i = 0; i < encodedArraySize; i++) {
-            encodedArray[i] = reprArray.get(i);
+        int[] returnArray = new int[encodedArraySize];
+        int index = 0;
+
+        for (int i = primeArray.length - 1; n > 1; i--) {
+            if (n % primeArray[i] == 0) {
+                returnArray[index++] = primeArray[i];
+                n /= primeArray[i];
+                if (i == 0) {
+                    i = primeArray.length;
+                }
+            } else {
+                if (i == 0) {
+                    i = primeArray.length;
+                }
+                continue;
+            }
         }
-        Arrays.sort(encodedArray);
-        return encodedArray;
+        return returnArray;
     }
 
     /*
